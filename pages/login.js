@@ -23,6 +23,7 @@ export default Login;
 
 export async function getServerSideProps() {
   const providers = await getProviders();
+  //all defined in [...nextauth].js
 
   return {
     props: {
