@@ -17,7 +17,7 @@ async function refreshAccessToken(token) {
     return {
       ...token,
       accessToken: refreshedToken.access_token,
-      accessTokenExpires: Date.now + refreshedToken.expires_in * 1000, //1 hour
+      accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000, //1 hour
       refreshToken: refreshedToken.refresh_token ?? token.refreshToken, //fallback to old token if new is not returned from spotify api
     }
 
@@ -75,7 +75,7 @@ export default NextAuth({
     async session({ session, token }) {
       session.user.accessToken = token.accessToken;
       session.user.refreshToken = token.refreshToken;
-
+      session.user.username = token.username;
 
       return session;
     },
