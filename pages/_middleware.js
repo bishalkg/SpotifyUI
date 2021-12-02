@@ -7,14 +7,18 @@ export async function middleware(req) {
 
   const { pathname } = req.nextUrl;
 
+  if (token && pathname === '/login') {
+    return NextResponse.redirect('/');
+  }
+
   //if trying to create next-auth session
   //if token already exists
   if (pathname.includes('/api/auth') || token) {
     return NextResponse.next()
   }
 
-
   //redirect to login if no token and requesting a protected route
+  //when you click logout, the token will be invalidated so will redirect you to login page
   if (!token && pathname !== '/login') {
     return NextResponse.redirect('/login');
   }
