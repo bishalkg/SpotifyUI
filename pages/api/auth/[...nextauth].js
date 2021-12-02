@@ -18,7 +18,7 @@ async function refreshAccessToken(token) {
       ...token,
       accessToken: refreshedToken.access_token,
       accessTokenExpires: Date.now + refreshedToken.expires_in * 1000, //1 hour
-      refreshToken: refresedToken.refresh_token ?? token.refreshToken, //fallback to old token if new is not returned from spotify api
+      refreshToken: refreshedToken.refresh_token ?? token.refreshToken, //fallback to old token if new is not returned from spotify api
     }
 
   } catch (error) {
