@@ -53,7 +53,7 @@ export default NextAuth({
         return {
           ...token,
           accessToken: account.access_token,
-          refreshToken: account.refreshToken,
+          refreshToken: account.refresh_token,
           username: account.providerAccountId,
           accessTokenExpires: account.expires_at * 1000, //ms
         }
@@ -62,6 +62,7 @@ export default NextAuth({
       //if accestoken still valid , return the previous token
       if (Date.now() < token.accessTokenExpires) {
         console.log("existing token is valid")
+        // console.log(token);
         return token;
       }
 
