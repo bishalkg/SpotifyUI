@@ -17,7 +17,7 @@ const Sidebar = () => {
     }
   }, [session, spotifyApi]);
 
-  console.log(playlists, 'sidebar');
+
   // console.log(session)
   return (
     <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll scrollbar-hide h-screen">
@@ -53,66 +53,15 @@ const Sidebar = () => {
         </button>
         <hr className="border-t-[0.1px] border-gray-900"/>
         {/* Playlists */}
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
-        <p className="cursor-pointer hover:text-white">
-          Playlist names...
-        </p>
+        {playlists.map(playlist => {
+          return (
+            <p className="cursor-pointer hover:text-white">
+              {playlist.name}
+            </p>
+          )
+        })}
+
+
       </div>
     </div>
   )

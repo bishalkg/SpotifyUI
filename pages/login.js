@@ -1,6 +1,9 @@
 import { getProviders, signIn } from 'next-auth/react';
+import { getSession } from "next-auth/react"
 
 function Login({ providers }) {
+
+  // console.log(session, 'loginpage')
   return (
     <div className="flex flex-col items-center bg-black min-h-screen w-full justify-center">
       <img className="w-52 mb-5" src="https://links.papareact.com/9xl" alt="" />
@@ -21,13 +24,14 @@ function Login({ providers }) {
 
 export default Login;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   const providers = await getProviders();
   //all defined in [...nextauth].js
 
   return {
     props: {
       providers,
+      // session: await getSession(ctx)
     }
   }
 }
