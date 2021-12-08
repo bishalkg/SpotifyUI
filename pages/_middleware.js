@@ -1,6 +1,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 
+//also has next event, but just using req here
 export async function middleware(req) {
   //if the user is currently logged in, then the token will exist
   const token = await getToken({ req, secret: process.env.JWT_SECRET });
@@ -11,6 +12,7 @@ export async function middleware(req) {
     return NextResponse.redirect('/');
   }
 
+  //protected route
   //if trying to create next-auth session
   //if token already exists
   if (pathname.includes('/api/auth') || token) {

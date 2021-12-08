@@ -15,10 +15,9 @@ export default function useSpotify() {
 
   // console.log(session, 'useSpotify');
 
-
   useEffect(() => {
     if (session) {
-      console.log(session, 'inside session block');
+      // console.log(session, 'inside session block');
       //if refresh token attempt fails, redirect to login page
       if (session.error == 'RefreshAccessTokenError') {
         signIn();
