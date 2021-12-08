@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import { useState, useEffect } from 'react';
 
@@ -8,6 +8,7 @@ import { playlistIdState, playlistState } from '../atoms/playlistAtom';
 import { useRecoilValue, useRecoilState } from 'recoil';
 
 import useSpotify from '../hooks/useSpotify';
+
 import Songs from './Songs';
 
 const colors = [
@@ -48,7 +49,7 @@ export default function Center() {
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">
-        <div className="flex items-center bg-green-500 space-x-3 opacity-90 hover:opacity-70 cursor-pointer rounded-full p-1 pr-2">
+        <div onClick={() => signOut()} className="text-white flex items-center bg-green-500 space-x-3 opacity-90 hover:opacity-70 cursor-pointer rounded-full p-1 pr-2">
           <img
             className="rounded-full w-20 h-20"
             src={session?.user.image}
