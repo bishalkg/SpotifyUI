@@ -14,7 +14,6 @@ const Sidebar = () => {
   const [playlists, setPlaylists] = useState([]);
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
 
-  console.log(playlistId);
 
 
   useEffect(() => {
