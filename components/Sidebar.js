@@ -60,9 +60,6 @@ const Sidebar = () => {
         </button>
         <hr className="border-t-[0.1px] border-gray-900"/>
         {playlists.map(playlist => {
-          // if (playlist.name.length > 20) {
-          //   playlist.name = playlist.name.slice(0,30).concat('...');
-          // }
           return (
             <p key={playlist.id} onClick={() => setPlaylistId(playlist.id)} className="cursor-pointer hover:text-white">
               {playlist.name}
