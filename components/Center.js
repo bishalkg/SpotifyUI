@@ -31,18 +31,28 @@ export default function Center() {
 
   useEffect(() => {
     setColor(shuffle(colors).pop());
-    // setColor(colors[Math.floor(Math.random()*7)])
   }, [playlistId]);
 
   useEffect(() => {
     spotifyApi.getPlaylist(playlistId)
     .then((data) => {
       setPlaylist(data.body)
+      console.log(data.body, 'playlist obj')
     })
     .catch((err) => console.log('error fetching playlist', err));
 
   }, [spotifyApi, playlistId]);
   // console.log(playlist);
+  /*
+  users top tracks
+  spotifyApi.getMyTopTracks()
+  .then(function(data) {
+    let topTracks = data.body.items;
+    console.log(topTracks);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+  */
 
 
 

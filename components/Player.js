@@ -8,8 +8,7 @@ import useSpotify from '../hooks/useSpotify';
 import useSongInfo from '../hooks/useSongInfo';
 
 
-import { HeartIcon, VolumeUpIcon as VolumeDownIcon } from '@heroicons/react/outline';
-import { FastForwardIcon, PauseIcon, PlayIcon, ReplyIcon, RewindIcon, VolumeUpIcon, SwitchHorizontalIcon } from '@heroicons/react/solid';
+import { BiSkipNextCircle, BiPlayCircle, BiRewindCircle, BiVolumeFull, BiVolumeLow, BiPauseCircle } from 'react-icons/bi';
 
 function Player() {
 
@@ -43,6 +42,26 @@ function Player() {
       }
     });
   };
+
+  /*
+  spotifyApi.skipToNext()
+    .then(function() {
+      console.log('Skip to next');
+    }, function(err) {
+      //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+      console.log('Something went wrong!', err);
+    });
+
+  // Skip User’s Playback To Previous Track
+  spotifyApi.skipToPrevious()
+    .then(function() {
+      console.log('Skip to previous');
+    }, function(err) {
+      //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+      console.log('Something went wrong!', err);
+    });
+
+  */
 
   useEffect(() => {
     if (spotifyApi.getAccessToken() && !currentTrackId) {
@@ -80,28 +99,26 @@ function Player() {
       </div>
 
       <div className="flex items-center justify-evenly">
-        <SwitchHorizontalIcon className="button" />
-        <RewindIcon
+        <BiRewindCircle
           //onClick
-          className="button"
+          className="button w-8 h-8 bg-green-500 rounded-full text-black"
         />
 
         {isPlaying ? (
-          <PauseIcon onClick={handlePlayPause} className="button w-10 h-10" />
+          <BiPauseCircle onClick={handlePlayPause} className="button w-10 h-10" />
         ) : (
-          <PlayIcon onClick={handlePlayPause} className="button w-10 h-10"/>
+          <BiPlayCircle onClick={handlePlayPause} className="button w-10 h-10"/>
         )}
 
-        <FastForwardIcon
+        <BiSkipNextCircle
           //onClick
-          className="button"
+          className="button w-8 h-8"
         />
-        <ReplyIcon className="button" />
 
       </div>
 
       <div className="flex items-center space-x-3 md:space-x-4 justify-end">
-        <VolumeDownIcon onClick={() => volume > 0 && setVolume(volume - 10)} className="button"/>
+        <BiVolumeLow onClick={() => volume > 0 && setVolume(volume - 10)} className="button"/>
         <input
           className="w-14 md:w-28"
           type="range"
@@ -110,7 +127,7 @@ function Player() {
           max={100}
           onChange={(e) => setVolume(Number(e.target.value))}
         />
-        <VolumeUpIcon onClick={() => volume < 100 && setVolume(volume + 10)} className="button"/>
+        <BiVolumeFull onClick={() => volume < 100 && setVolume(volume + 10)} className="button"/>
       </div>
     </div>
   )

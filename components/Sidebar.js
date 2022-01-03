@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { HomeIcon, SearchIcon, LibraryIcon, PlusCircleIcon, RssIcon } from '@heroicons/react/outline';
-import { HeartIcon} from '@heroicons/react/solid';
+import { BiHeart, BiHome, BiSearch, BiPlusCircle, BiLibrary, BiRss } from 'react-icons/bi';
 
 import { useSession } from "next-auth/react";
 import useSpotify from '../hooks/useSpotify';
 
-import { playlistIdState } from '../atoms/playlistAtom';
+import { playlistIdState, playlistState, isLikedSongState } from '../atoms/playlistAtom';
 import { useRecoilState } from 'recoil';
 
 const Sidebar = () => {
@@ -13,6 +12,8 @@ const Sidebar = () => {
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState([]);
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
+  const [playlist, setPlaylist] = useRecoilState(playlistState);
+  const [isLikedSong, setIsLikedSong] = useRecoilState(isLikedSongState);
 
 
 
@@ -20,42 +21,58 @@ const Sidebar = () => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getUserPlaylists().then(data => {
         setPlaylists(data.body.items);
-      });
+    });
+
+
     }
   }, [session, spotifyApi]);
 
+  const fetchLikedSongs = () => {
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi.getMySavedTracks({
+        limit : 2,
+        offset: 1
+      })
+      .then((data) => {
+        setPlaylist(data.body.items)
+        console.log(data.body, 'sidebar likedsongs')
+      })
+      .then(() => {
+        setIsLikedSong(true);
+      })
+      .catch((err) => console.log(err, 'error setting liked song'))
+    }
+  }
 
-  // console.log(session)
+
+
   return (
     <div className="text-gray-500 p-5 text-sm lg:text-sm border-r border-gray-900 overflow-y-scroll scrollbar-hide h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36">
       <div className="space-y-4">
-      {/* <button className="flex items-center space-x-2 hover:text-green-500">
-          <p>Logout</p>
-        </button> */}
         <button className="flex items-center space-x-2 hover:text-green-500">
-          <HomeIcon className="h-5 w-5"/>
+          <BiHome className="button"/>
           <p>Home</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-green-500">
-          <SearchIcon className="h-5 w-5"/>
+          <BiSearch className="button"/>
           <p>Search</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-green-500">
-          <LibraryIcon className="h-5 w-5"/>
+          <BiLibrary className="button"/>
           <p>Your Library</p>
         </button>
         <hr className="border-t-[0.1px] border-gray-900"/>
 
         <button className="flex items-center space-x-2 hover:text-green-500">
-          <PlusCircleIcon className="h-5 w-5"/>
+          <BiPlusCircle className="button"/>
           <p>Create Playlist</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-green-500">
-          <HeartIcon className="text-green-500 h-5 w-5"/>
-          <p>Liked Songs</p>
+          <BiHeart className="button"/>
+          <p onClick={() => fetchLikedSongs()}>Liked Songs</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-green-500">
-          <RssIcon className="h-5 w-5"/>
+          <BiRss className="button"/>
           <p>Your episodes</p>
         </button>
         <hr className="border-t-[0.1px] border-gray-900"/>
