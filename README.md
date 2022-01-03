@@ -1,4 +1,4 @@
-# Next.js + Tailwind CSS 
+# Next.js + NextAuth.js + Tailwind CSS 
 
 
 ## How to use
