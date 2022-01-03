@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 
 import { shuffle } from 'lodash';
 
-import { playlistIdState, playlistState } from '../atoms/playlistAtom';
+import { playlistIdState, playlistState, isLikedSongState } from '../atoms/playlistAtom';
 import { useRecoilValue, useRecoilState } from 'recoil';
+
 
 import useSpotify from '../hooks/useSpotify';
 
@@ -28,6 +29,7 @@ export default function Center() {
   const [color, setColor] = useState(null);
   const playlistId = useRecoilValue(playlistIdState);
   const [playlist, setPlaylist] = useRecoilState(playlistState);
+  const [isLikedSong, setIsLikedSong] = useRecoilState(isLikedSongState);
 
   useEffect(() => {
     setColor(shuffle(colors).pop());
@@ -37,8 +39,8 @@ export default function Center() {
     spotifyApi.getPlaylist(playlistId)
     .then((data) => {
       setPlaylist(data.body)
-      console.log(data.body, 'playlist obj')
     })
+    .then(() => setIsLikedSong(false))
     .catch((err) => console.log('error fetching playlist', err));
 
   }, [spotifyApi, playlistId]);
@@ -73,9 +75,9 @@ export default function Center() {
       <section
         className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white p-8`}
       >
-        <img className="h-44 w-44 shadow-2xl" src={playlist?.images?.[0]?.url} alt="" />
+        {isLikedSong ? null : <img className="h-44 w-44 shadow-2xl" src={playlist?.images?.[0]?.url} alt="" />}
         <div>
-          <p>PLAYLIST</p>
+          <p>{isLikedSong ? "LIKED SONGS" : "PLAYLIST"}</p>
           <h1 className="text-2xl md:text-3xl xl:text-5xl">{playlist?.name}</h1>
         </div>
       </section>

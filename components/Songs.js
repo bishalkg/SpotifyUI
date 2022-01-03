@@ -6,7 +6,8 @@ function Songs() {
 
   const playlist = useRecoilValue(playlistState);
   const [isLikedSong, setIsLikedSong] = useRecoilState(isLikedSongState);
-  //liked songs => playlist.body.items
+  // console.log(playlist, 'songs component')
+  console.log(isLikedSong, 'islikedSong')
   return isLikedSong ?
   (
     <div className="px-8 flex flex-col space-y-1 pb-20 text-white">

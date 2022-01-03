@@ -30,11 +30,9 @@ const Sidebar = () => {
   const fetchLikedSongs = () => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getMySavedTracks({
-        limit : 2,
-        offset: 1
       })
       .then((data) => {
-        setPlaylist(data.body.items)
+        setPlaylist(data.body)
         console.log(data.body, 'sidebar likedsongs')
       })
       .then(() => {
@@ -42,6 +40,10 @@ const Sidebar = () => {
       })
       .catch((err) => console.log(err, 'error setting liked song'))
     }
+  }
+
+  const resetToPlaylist = (playlistId) => {
+    setPlaylistId(playlistId);
   }
 
 
@@ -78,7 +80,7 @@ const Sidebar = () => {
         <hr className="border-t-[0.1px] border-gray-900"/>
         {playlists.map(playlist => {
           return (
-            <p key={playlist.id} onClick={() => setPlaylistId(playlist.id)} className="cursor-pointer hover:text-white">
+            <p key={playlist.id} onClick={() => resetToPlaylist(playlist.id)} className="cursor-pointer hover:text-white">
               {playlist.name}
             </p>
           )
