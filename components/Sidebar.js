@@ -42,7 +42,7 @@ const Sidebar = () => {
   }
 
   const setPlaylistById = (playlistId) => {
-    setPlaylistId(playlist.id);
+    setPlaylistId(playlistId);
     spotifyApi.getPlaylist(playlistId)
     .then((data) => {
       setPlaylist(data.body)
