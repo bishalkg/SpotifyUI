@@ -1,7 +1,7 @@
 # Next.js + NextAuth.js + Tailwind CSS 
 
 
-## How to use
+## How to use dev
 
 - create a .env.local file and add the following
  ```
@@ -13,6 +13,8 @@
 - open the repo and run:
 ```npm run dev```
 to run in development mode
+
+- Keep open the [Spotify Web Player](https://open.spotify.com/) on your browser for this to work.
 
 ## Demo
 - Don't forget to turn the audio on!
