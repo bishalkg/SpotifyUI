@@ -1,5 +1,8 @@
 # Next.js + NextAuth.js + Tailwind CSS 
 
+## Description
+
+- this application allows the user to login to their spotify account, retrieve their playlists and their liked songs, play and pause any song in those lists, control the volume up and down by sliding the volume bar or pressing the volume up/down icons.
 
 ## How to use dev
 
