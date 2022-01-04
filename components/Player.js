@@ -45,6 +45,7 @@ function Player() {
 
 
   /*
+  //spotify api error for:
   spotifyApi.skipToNext()
     .then(function() {
       console.log('Skip to next');
@@ -61,7 +62,6 @@ function Player() {
       //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
       console.log('Something went wrong!', err);
     });
-
   */
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function Player() {
 
       <div className="flex items-center justify-evenly">
         <BiRewindCircle
-          // onClick={() => skipToNextSong()}
+          // onClick=
           className="button w-8 h-8 bg-green-500 rounded-full text-black"
         />
 
@@ -112,7 +112,7 @@ function Player() {
         )}
 
         <BiSkipNextCircle
-          onClick={() => skipToNextSong()}
+          // onClick={() => skipToNextSong()}
           className="button w-8 h-8"
         />
 
