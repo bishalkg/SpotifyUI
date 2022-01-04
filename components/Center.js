@@ -24,7 +24,6 @@ const colors = [
 
 export default function Center() {
   const { data: session } = useSession();
-  // console.log(session);
   const spotifyApi = useSpotify();
   const [color, setColor] = useState(null);
   const playlistId = useRecoilValue(playlistIdState);
@@ -36,14 +35,22 @@ export default function Center() {
   }, [playlistId]);
 
   useEffect(() => {
-    spotifyApi.getPlaylist(playlistId)
-    .then((data) => {
-      setPlaylist(data.body)
-    })
-    .then(() => setIsLikedSong(false))
-    .catch((err) => console.log('error fetching playlist', err));
+
+    if (isLikedSong) {
+      spotifyApi.getMySavedTracks({
+      })
+      .then((data) => {
+        setPlaylist(data.body)
+      })
+      .then(() => {
+        setIsLikedSong(true);
+      })
+      .catch((err) => console.log(err, 'error setting liked song'))
+    }
+
 
   }, [spotifyApi, playlistId]);
+
   // console.log(playlist);
   /*
   users top tracks

@@ -25,7 +25,7 @@ function Player() {
         setCurrentTrackId(data.body?.item?.id);
 
         spotifyApi.getMyCurrentPlaybackState().then((data) => {
-          console.log('now playing', data.body);
+
           setIsPlaying(data.body?.is_playing);
         });
       });
@@ -42,6 +42,7 @@ function Player() {
       }
     });
   };
+
 
   /*
   spotifyApi.skipToNext()
@@ -100,7 +101,7 @@ function Player() {
 
       <div className="flex items-center justify-evenly">
         <BiRewindCircle
-          //onClick
+          // onClick={() => skipToNextSong()}
           className="button w-8 h-8 bg-green-500 rounded-full text-black"
         />
 
@@ -111,7 +112,7 @@ function Player() {
         )}
 
         <BiSkipNextCircle
-          //onClick
+          onClick={() => skipToNextSong()}
           className="button w-8 h-8"
         />
 

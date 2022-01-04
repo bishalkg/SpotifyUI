@@ -14,5 +14,5 @@ export const playlistIdState = atom({
 
 export const isLikedSongState = atom({
   key: "isLikedSongState",
-  default: false,
+  default: true,
 });

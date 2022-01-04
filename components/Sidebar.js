@@ -32,8 +32,7 @@ const Sidebar = () => {
       spotifyApi.getMySavedTracks({
       })
       .then((data) => {
-        setPlaylist(data.body)
-        console.log(data.body, 'sidebar likedsongs')
+        setPlaylist(data.body);
       })
       .then(() => {
         setIsLikedSong(true);
@@ -42,8 +41,14 @@ const Sidebar = () => {
     }
   }
 
-  const resetToPlaylist = (playlistId) => {
-    setPlaylistId(playlistId);
+  const setPlaylistById = (playlistId) => {
+    setPlaylistId(playlist.id);
+    spotifyApi.getPlaylist(playlistId)
+    .then((data) => {
+      setPlaylist(data.body)
+    })
+    .then(() => setIsLikedSong(false))
+    .catch((err) => console.log('error fetching playlist', err));
   }
 
 
@@ -75,12 +80,12 @@ const Sidebar = () => {
         </button>
         <button className="flex items-center space-x-2 hover:text-green-500">
           <BiRss className="button"/>
-          <p>Your episodes</p>
+          <p>Your Podcasts</p>
         </button>
         <hr className="border-t-[0.1px] border-gray-900"/>
         {playlists.map(playlist => {
           return (
-            <p key={playlist.id} onClick={() => resetToPlaylist(playlist.id)} className="cursor-pointer hover:text-white">
+            <p key={playlist.id} onClick={() => setPlaylistById(playlist.id)} className="cursor-pointer hover:text-white">
               {playlist.name}
             </p>
           )
