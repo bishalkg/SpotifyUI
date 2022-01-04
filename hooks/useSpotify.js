@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import spotifyApi from '../lib/spotify';
 
 
