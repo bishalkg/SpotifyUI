@@ -15,9 +15,10 @@
 to run in development mode
 
 ## Demo
-<p
-  align="center">
-  <img
-    alt="product overview demo" src="public/demo/SpotifyUI.gif">
-</p>
+
+https://user-images.githubusercontent.com/84740259/147996609-78119447-2f30-4500-b57d-484984a2136f.mp4
+
+
+
+
 
