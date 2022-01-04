@@ -15,6 +15,7 @@
 to run in development mode
 
 ## Demo
+- Don't forget to turn the audio on!
 
 https://user-images.githubusercontent.com/84740259/148000847-78522b37-4348-4e18-9a9b-c9b645b37431.mp4
 
